@@ -41,11 +41,14 @@ qui déclare la compétence `2.1` apparaît sur la page du domaine 2.
 4. Déposer les preuves dans `public/preuves/` et les référencer via `preuves[].href`.
 5. Retirer `brouillon: true` une fois la fiche finalisée.
 
-## Déploiement
+## Déploiement (Vercel)
 
-Le site est exporté en statique (`output: "export"`). Le workflow
-`.github/workflows/deploy.yml` publie sur GitHub Pages à chaque push sur `main` ;
-il faut activer Pages avec la source « GitHub Actions » dans les réglages du dépôt.
+1. Sur [vercel.com](https://vercel.com), se connecter avec le compte GitHub.
+2. « Add New… › Project », importer le dépôt `site123`.
+3. Vercel détecte Next.js : framework, commande de build (`next build`) et
+   répertoire de sortie sont remplis automatiquement — ne rien changer.
+4. « Deploy ». Le site est en ligne sur `https://<projet>.vercel.app`.
 
-`NEXT_PUBLIC_BASE_PATH` sert à servir le site depuis un sous-chemin
-(`/site123` sur GitHub Pages). À laisser vide pour un domaine dédié.
+Aucune variable d'environnement n'est nécessaire : tout le contenu est dans le
+code. Ensuite, chaque push sur `main` redéploie la production, et chaque autre
+branche obtient une URL de prévisualisation.
